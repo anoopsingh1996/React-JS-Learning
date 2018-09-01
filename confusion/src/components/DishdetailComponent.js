@@ -26,9 +26,8 @@ const RenderDish = (props) => {
     );
 };
 
-const RenderComments = (props) => {
-    const comments = props.comments;
-    if (comments) {
+const RenderComments = ({ comments, addComment, dishId }) => {
+    if (comments != null) {
         return (
             <div className="col-12 col-md-5 m-1">
                 <h4>Comments</h4>
@@ -49,7 +48,7 @@ const RenderComments = (props) => {
                         })
                     }
                 </ul>
-                <CommentForm />
+                <CommentForm dishId={dishId} addComment={addComment} />
             </div>
         );
     } else {
@@ -77,7 +76,9 @@ const DishDetails = (props) => {
                 </div>
                 <div className="row">
                     <RenderDish dish={props.dish} />
-                    <RenderComments comments={props.comments} />
+                    <RenderComments comments={props.comments}
+                      addComment={props.addComment}
+                      dishId={props.dish.id} />
                 </div>
             </div>
         );
